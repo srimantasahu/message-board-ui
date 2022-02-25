@@ -1,3 +1,4 @@
+
 export function getMessages() {
   return fetch('http://localhost:9090/messageboard/messages/getAll')
             .then(data => data.json());

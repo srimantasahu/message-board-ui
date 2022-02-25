@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import logo from './logo.svg';
-import './App.css';
-import { getMessages, addMessage } from './message-apis.js';
+import logo from '../logo.svg';
+import { getMessages, addMessage } from '../services/MessageAPIs.js';
+import '../css/MessageBoardApp.css';
 
 
-function App() {
+function MessageBoardApp() {
   const [ message, setMessage ] = useState({});
   const [ messageList, setMessageList ] = useState([]);
 
@@ -36,11 +36,11 @@ function App() {
   };
 
   return(
-              <div className="row center">
+           <div className="row">
             <h3>Message board</h3>
 
             <form onSubmit={handleSubmit}>
-            <div>
+            <div class="form-group">
               <label htmlFor="email">
                 Email address
               </label>
@@ -51,10 +51,13 @@ function App() {
                 </label>
                 <textarea
                   id="message" name="message" defaultValue=""/>
+
+                  <div >
+                      <button className="btn btn-primary btn-sm float-end">
+                        POST
+                      </button>
+                  </div>
               </div>
-              <button className="btn btn-primary">
-                POST
-              </button>
             </form>
 
             <h3>Messages</h3>
@@ -62,19 +65,19 @@ function App() {
                 {
                     messageList
                     .sort((m1, m2) => m2.id - m1.id)
-                    .map((step, move) => {
-                                           return (
-                                             <div key={step.id}>
-                                                 <textarea value={step.message} readOnly />
-                                             </div>
-                                           );
-                                         })
+                    .map((step, move) =>
+                    {
+                       return (
+                         <div key={step.id}>
+                             <textarea value={step.message} readOnly />
+                         </div>
+                       );
+                     })
                 }
             </div>
-          </div>
-
+            </div>
   )
 }
 
-export default App;
+export default MessageBoardApp;
 
