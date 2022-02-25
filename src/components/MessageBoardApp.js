@@ -69,7 +69,7 @@ function MessageBoardApp() {
                     {
                        return (
                          <div key={step.id}>
-                             <textarea value={step.message} readOnly />
+                             <textarea value={step.email + '\n\n' + step.message} readOnly rows="3"/>
                          </div>
                        );
                      })
