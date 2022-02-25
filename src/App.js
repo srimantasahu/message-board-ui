@@ -31,7 +31,7 @@ function App() {
 
     addMessage(newMessage)
         .then(key => {
-           setMessageList([...messageList, {id: key, email: newMessage.email, message: newMessage.message}]);
+           setMessageList([{id: key, email: newMessage.email, message: newMessage.message}, ...messageList]);
         });
   };
 
@@ -59,13 +59,17 @@ function App() {
 
             <h3>Messages</h3>
             <div>
-                {messageList.map((step, move) => {
+                {
+                    messageList
+                    .sort((m1, m2) => m2.id - m1.id)
+                    .map((step, move) => {
                                            return (
                                              <div key={step.id}>
                                                  <textarea value={step.message} readOnly />
                                              </div>
                                            );
-                                         })}
+                                         })
+                }
             </div>
           </div>
 
